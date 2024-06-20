@@ -1,0 +1,31 @@
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+<div class="container">
+    <h2>Список пользователей</h2>
+    <h2 class="text-lg text-white">{{ request.user.username }}</h2>
+    <ul class="profile-list">
+        {% if request.user.profile.avatar %}
+        <li class="profile-item">
+            <div class="profile-header">
+                {% if profile.profile.avatar %}
+                <img src="{{ request.user.profile.avatar.url }}" alt="{{ request.user.username }} avatar" class="avatar">
+                {% else %}
+                <div class="no-avatar"></div>
+                {% endif %}
+            </div>
+            <div class="profile-details">
+                <strong>{{ user.username }}</strong>
+                <p>Имя: {{ user.username }}</p>
+
+            </div>
+            <div class="profile-actions">
+
+            </div>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}

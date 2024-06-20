@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+{% block title %}Rooms | {% endblock %}
+
+{% block content %}
+<div class="p-10 lg:p-20 text-center">
+    <h1 class="text-3xl lg:text-6xl text-white">Комнаты</h1>
+</div>
+
+<div class="w-full flex flex-wrap items-center">
+    {% for room in rooms %}
+    <div class="w-full lg:w-1/4 px-3 py-3">
+        <div class="p-4 bg-white shadow rounded text-center">
+            <h2 class="mb-5 text-2xl font-semibold">{{ room.name }}</h2>
+
+            <a href="{% url 'room' room.id %}"
+               class="px-5 py-3 block text-white bg-pink-600 hover:bg-red-700">Написать</a>
+            <a href="{% url 'room_edit' room.id %}" class="px-5 py-3 block  text-white bg-pink-500 hover:bg-red-700">Редактировать</a>
+            <a href="{% url 'room_delete' room.id %}" class="px-5 py-2 block  text-white bg-pink-600 hover:bg-red-700">Удалить</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Отдельный блок для отображения всех пользователей по профилям -->
+<!--<div class="mt-6 mx-4 lg:mx-auto p-4 bg-white rounded">-->
+<!--    <h2 class="text-center text-3 lg:text-3xl text-black">Все пользователи</h2>-->
+<!--    <ul class="list-disc ml-5">-->
+<!--        {% if profile_core %}-->
+<!--        <<h2 class="mb-5 text-2xl font-semibold">{{ profile.user }}</h2>-->
+<!--        {% endif %}-->
+<!--    </ul>-->
+<!--</div>-->
+<!--<h1>Все новости ({{ profile_core.count}})</h1>-->
+<!--    {% if profile_core %}-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>Пользователи</td>-->
+
+<!--&lt;!&ndash;        {# Условие получается составным. #}&ndash;&gt;-->
+<!--&lt;!&ndash;        {% if perms.news.change_post or perms.news.delete_post %}&ndash;&gt;-->
+<!--&lt;!&ndash;        <td>Действия</td>&ndash;&gt;-->
+<!--&lt;!&ndash;        {% endif %}&ndash;&gt;-->
+
+
+<!--        </tr>-->
+<!--        {% for profile in profile_core %}-->
+<!--        <tr>-->
+<!--            <td>{{ profile.user }}</td>-->
+
+<!--&lt;!&ndash;        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;            {# А здесь доступ для каждой ссылки теперь будем проверять отдельно #}&ndash;&gt;-->
+<!--&lt;!&ndash;            {% if perms.post_detail %}&ndash;&gt;-->
+<!--&lt;!&ndash;            <a href="{% url 'post_detail' post_detail.id %}">Открыть</a>&ndash;&gt;-->
+<!--&lt;!&ndash;            {% endif %}&ndash;&gt;-->
+<!--&lt;!&ndash;            {% if perms.news.change_post %}&ndash;&gt;-->
+<!--&lt;!&ndash;            <a href="{% url 'post_edit' post_detail.id %}">Изменить</a>&ndash;&gt;-->
+<!--&lt;!&ndash;            {% endif %}&ndash;&gt;-->
+<!--&lt;!&ndash;            {% if perms.news.delete_post %}&ndash;&gt;-->
+<!--&lt;!&ndash;            <a href="{% url 'post_delete' post_detail.id %}">Удалить</a>&ndash;&gt;-->
+<!--&lt;!&ndash;            {% endif %}&ndash;&gt;-->
+<!--&lt;!&ndash;        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;    </tr>&ndash;&gt;-->
+<!--        {% endfor %}-->
+<!--    </table>-->
+<!--    {% endif %}-->
+
+<div class="text-center mt-10">
+    <a href="{% url 'room_create' %}" class="px-5 py-3 rounded-xl text-white bg-teal-400 hover:bg-teal-700">Create New
+        Room</a>
+</div>
+{% endblock %}
